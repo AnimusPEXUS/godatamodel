@@ -6,16 +6,17 @@ package godatamodel
 // 	// CheckPermission func(permission_type   subject *DataModelSubject)
 // }
 
-// type DataModelSubjectDocumentItem struct {
-// 	Name                 string
-// 	Value                interface{}
-// 	DefaultValueReturned bool
-// }
+type DataModelSubjectDocumentItem struct {
+	Name    string
+	Value   interface{}
+	Null    bool
+	Default bool
+}
 
-// // this is used to insert or get documents
-// type DataModelSubjectDocument struct {
-// 	Items []*DataModelSubjectDocumentItem
-// }
+// this is used to insert or get documents
+type DataModelSubjectDocument struct {
+	Items []*DataModelSubjectDocumentItem
+}
 
 // this is root structure of tree like structure of this package functionality
 type DataModel struct {
