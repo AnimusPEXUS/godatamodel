@@ -44,22 +44,6 @@ func NewModelSubjectWidget(
 	error,
 ) {
 	self := &ModelSubjectWidget{options: options}
-	return self, nil
-}
-
-func (self *ModelSubjectWidget) GetValues() (map[string]interface{}, error) {
-	ret := make(map[string]interface{})
-	for _, i := range self.Fields {
-		v := i.GetValue()
-		ret[i.options.Item.Name] = v
-	}
-	return ret, nil
-}
-
-func (self *ModelSubjectWidget) Render() (
-	*elementtreeconstructor.ElementMutator,
-	error,
-) {
 
 	self.Element = self.options.Etc.CreateElement("div")
 
@@ -95,6 +79,14 @@ func (self *ModelSubjectWidget) Render() (
 		self.Fields = append(self.Fields, form_item)
 		self.Element.AppendChildren(form_item.Element)
 	}
+	return self, nil
+}
 
-	return self.Element, nil
+func (self *ModelSubjectWidget) GetValues() (map[string]interface{}, error) {
+	ret := make(map[string]interface{})
+	for _, i := range self.Fields {
+		v := i.GetValue()
+		ret[i.options.Item.Name] = v
+	}
+	return ret, nil
 }

@@ -30,19 +30,6 @@ func NewModelSubjectWidgetItem(
 
 	self := &ModelSubjectWidgetItem{options: options}
 
-	return self, nil
-}
-
-func (self *ModelSubjectWidgetItem) GetValue() interface{} {
-	ret := self.EditingElement.GetJsValue("value").String()
-	return ret
-}
-
-func (self *ModelSubjectWidgetItem) Render() (
-	*elementtreeconstructor.ElementMutator,
-	error,
-) {
-
 	etc := self.options.Etc
 
 	editing_child := etc.CreateElement("input").SetAttribute("type", "text")
@@ -61,6 +48,10 @@ func (self *ModelSubjectWidgetItem) Render() (
 			),
 		)
 	}
+	return self, nil
+}
 
-	return self.Element, nil
+func (self *ModelSubjectWidgetItem) GetValue() interface{} {
+	ret := self.EditingElement.GetJsValue("value").String()
+	return ret
 }
