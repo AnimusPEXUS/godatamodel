@@ -23,6 +23,15 @@ type DataModel struct {
 	Subjects []*DataModelSubject
 }
 
+func (self *DataModel) GetSubjectByName(name string) *DataModelSubject {
+	for _, i := range self.Subjects {
+		if i.Name == name {
+			return i
+		}
+	}
+	return nil
+}
+
 // type DataModelPermissionLists struct {
 // 	WhoCanCreate []string
 // 	WhoCanEdit   []string
@@ -39,6 +48,15 @@ type DataModelSubject struct {
 	ForExport    bool // clients can request this Model represintation
 	Fields       []*DataModelSubjectField
 	// DataModelPermissionLists
+}
+
+func (self *DataModelSubject) GetFieldByName(name string) *DataModelSubjectField {
+	for _, i := range self.Fields {
+		if i.Name == name {
+			return i
+		}
+	}
+	return nil
 }
 
 type DataModelSubjectFieldType string
